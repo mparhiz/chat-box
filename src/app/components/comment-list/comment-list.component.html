@@ -1,0 +1,31 @@
+<ng-container *ngIf="comments">
+  <div class="comments" *ngFor="let comment of comments">
+      <app-comment
+        [comment]="comment"
+        [reply]=""
+        [commentId]="comment.id"
+        [currentUser]="currentUser"
+        (add)="addComment($event)"
+        (delete)="deleteComment($event)"
+        (update)="updateComment($event)"
+      ></app-comment>
+
+      <div class="replies" *ngIf="comment.replies">
+        <app-comment
+          *ngFor="let reply of comment.replies"
+          [reply]="reply"
+          [comment]=""
+          [commentId]="comment.id"
+          [currentUser]="currentUser"
+          (add)="addComment($event)"
+          (delete)="deleteComment($event)"
+          (update)="updateComment($event)"
+        ></app-comment>
+      </div>
+  </div>
+
+  <app-comment-form
+    [currentUser]="currentUser"
+    (submit)="addComment($event)"
+  ></app-comment-form>
+</ng-container>

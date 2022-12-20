@@ -1,0 +1,11 @@
+.vote {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+
+  p {
+    font-size: 16px;
+    margin: 3px 0;
+  }
+}

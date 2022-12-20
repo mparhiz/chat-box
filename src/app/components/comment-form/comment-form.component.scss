@@ -1,0 +1,78 @@
+.avatar {
+  ::ng-deep .mat-grid-tile-content {
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    img {
+      margin-top: 15px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.send-button {
+  ::ng-deep .mat-grid-tile-content {
+    justify-content: flex-end;
+  }
+}
+
+.content {
+  ::ng-deep .mat-grid-tile-content {
+    align-items: flex-start;
+
+    mat-card-content {
+      width: 100%;
+
+      .wrapper {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        border: solid #d1daf0;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 1em;
+        &:focus-within {
+          outline: none !important;
+          border-color: #3F51B5;
+        }
+
+        > div {
+          margin-top: -1.7em;
+
+          .title {
+            font-size: 14px;
+            background-color: white;
+            display: inline-block;
+            padding: .5em .3em;
+          }
+
+          textarea {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            left: 10px;
+            bottom: 10px;
+            resize: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+            &:focus {
+              outline: none !important;
+              border-color: #ffffff;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.reply {
+  margin-left: 10px;
+  border-left: 2px solid #E9EBF0;
+  padding-left: 15px;
+}

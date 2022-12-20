@@ -1,0 +1,9 @@
+<div class="vote" [style.flex-direction]="direction">
+  <button mat-icon-button aria-label="add vote" (click)="addScore()" [disabled]="isVoted">
+    <mat-icon>add</mat-icon>
+  </button>
+  <p>{{ score }}</p>
+  <button mat-icon-button aria-label="subtract vote" (click)="subtractScore()" [disabled]="!isVoted">
+    <mat-icon>remove</mat-icon>
+  </button>
+</div>

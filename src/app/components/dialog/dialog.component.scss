@@ -1,0 +1,12 @@
+.dialog-buttons {
+  justify-content: center;
+
+  button:first-child {
+    background-color: rgb(223, 223, 223);
+  }
+
+  button:nth-child(2) {
+    background-color: red;
+    color: white;
+  }
+}

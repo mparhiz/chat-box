@@ -1,0 +1,77 @@
+<mat-card MatCardAppearance="raised" [class]="isReply ? 'reply' : ''">
+  <mat-grid-list #grid cols="12" rowHeight="55px">
+
+    <mat-grid-tile *ngIf="isLargScreen" colspan="1" rowspan="3">
+      <app-vote [score]="score" [isVoted]="isVoted" [direction]="'column'" (voted)="onVote($event)"></app-vote>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="user-info" [colspan]="userInfo_colspan" rowspan="1">
+      <mat-card-header>
+        <img [src]="avatar" mat-card-avatar />
+        <mat-card-title>
+          {{userName}}
+          <div class="you" *ngIf="isCurrentUser()">YOU</div>
+          <span>{{createdAt | dateAgo}}</span>
+        </mat-card-title>
+      </mat-card-header>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="isLargScreen" colspan="4" rowspan="1">
+      <div class="action-buttons">
+        <button mat-flat-button *ngIf="!isCurrentUser() && !isReply" (click)="onReply()">
+          <mat-icon>reply</mat-icon>
+          Reply
+        </button>
+        <button mat-flat-button *ngIf="isCurrentUser()" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+        <button class="delete-button" mat-flat-button *ngIf="isCurrentUser()" (click)="onDelete()">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="content" [colspan]="content_colspan" [rowspan]="content_rowspan">
+      <mat-card-content>
+        <p *ngIf="content && !isEdit">{{content}}</p>
+        <textarea *ngIf="content && isEdit" [(ngModel)]="content"></textarea>
+      </mat-card-content>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="isEdit" class="submit-button" colspan="12" rowspan="1">
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="onUpdate()">UPDATE</button>
+      </mat-card-actions>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!isLargScreen" class="submit-button" colspan="12" rowspan="1">
+      <app-vote [score]="score" [direction]="'row'" [isVoted]="isVoted" (voted)="onVote($event)"></app-vote>
+      <div class="action-buttons">
+        <button mat-flat-button *ngIf="!isCurrentUser() && !isReply" (click)="onReply()">
+          <mat-icon>reply</mat-icon>
+          Reply
+        </button>
+        <button mat-flat-button *ngIf="isCurrentUser()" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+        <button class="delete-button" mat-flat-button *ngIf="isCurrentUser()" (click)="onDelete()">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </div>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</mat-card>
+
+<app-comment-form
+  *ngIf="showForm"
+  [isReply]="true"
+  [commentId]="comment?.id"
+  [replyingTo]="userName"
+  [currentUser]="currentUser"
+  (submit)="addComment($event)"
+></app-comment-form>

@@ -1,0 +1,32 @@
+<div [class]="isReply ? 'reply' : ''">
+  <mat-card MatCardAppearance="raised">
+    <mat-grid-list #grid cols="12" rowHeight="70px">
+
+      <mat-grid-tile class="avatar" *ngIf="isLargScreen" colspan="1" rowspan="2">
+        <img [src]="currentUser!.image.png" mat-card-avatar />
+      </mat-grid-tile>
+
+      <mat-grid-tile class="content" [colspan]="content_colspan" rowspan="2">
+        <mat-card-content>
+          <div class="wrapper">
+              <div>
+                <div class="title">Add a comment</div>
+                <textarea #textarea [placeholder]="placeholder" [(ngModel)]="content" ></textarea>
+              </div>
+          </div>
+        </mat-card-content>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="avatar" *ngIf="!isLargScreen" colspan="6" rowspan="1">
+        <img [src]="currentUser!.image.png" mat-card-avatar />
+      </mat-grid-tile>
+
+      <mat-grid-tile class="send-button" [colspan]="buttons_colspan" rowspan="1">
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="onSend()">SEND</button>
+        </mat-card-actions>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </mat-card>
+</div>
